@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographer’s Café | Official Website</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #fafdf1;
+            --brown: #4A3728;
+            --tan: #d4a373;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--brown);
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            text-decoration: none;
+            color: var(--brown);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--brown);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Hero */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/interior-1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+        }
+
+        /* Gallery Filter System */
+        .section {
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        .filter-buttons {
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 2px solid var(--tan);
+            padding: 10px 25px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--brown);
+            transition: 0.3s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--tan);
+            color: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: white;
+            transition: 0.3s;
+            height: 300px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--brown);
+            color: white;
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#" class="logo">PHOTOGRAPHER'S CAFÉ</a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Photos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div>
+            <h1>Aesthetic Vibes. Quality Conversations.</h1>
+            <p>Rooted in nature, crafted with care. We are commited to serving <br>you wholesome, locally sourced, and
+                organic goodness that <br>nourishes both body and soul. From our farm fresh ingredients <br>to our
+                sustainably brewed coffee, every choice we make is <br>designed to be good for you and kind to our
+                planet.</p>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="section" id="gallery">
+        <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem;">Explore Our Space</h2>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterGallery('all')">All Photos</button>
+            <button class="filter-btn" onclick="filterGallery('interior')">The Vibe (Interior)</button>
+            <button class="filter-btn" onclick="filterGallery('about')">About</button>
+            <button class="filter-btn" onclick="filterGallery('food')">Delicious Items</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+
+            <!-- Interior Category (Add your 10-15 interior shots here) -->
+            <div class="gallery-item interior">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.21 PM.jpeg"
+                    alt="Café Interior">
+            </div>
+            <div class="gallery-item interior">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.20 PM (2).jpeg"
+                    alt="Café Interior Arches">
+            </div>
+            <div class="gallery-item interior">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.19 PM.jpeg"
+                    alt="Café Interior Arches">
+            </div>
+            <div class="gallery-item interior">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.21 PM (1).jpeg"
+                    alt="Café Interior Arches">
+            </div>
+            <div class="gallery-item interior">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.18 PM (2).jpeg"
+                    alt="Café Interior Arches">
+            </div>
+
+
+
+            <!-- About Category -->
+
+            <div class="gallery-item about">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.11 PM.jpeg"
+                    alt="Where Coffee meets asthetic vibes">
+            </div>
+            <div class="gallery-item about">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.11 PM (1).jpeg"
+                    alt="What we serve">
+            </div>
+            <div class="gallery-item about">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.12 PM (1).jpeg"
+                    alt="Vibe">
+            </div>
+            <div class="gallery-item about">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.11 PM (2).jpeg"
+                    alt="Why we are different">
+            </div>
+            <div class="gallery-item about">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.12 PM (2).jpeg"
+                    alt="Let's be social">
+            </div>
+
+            <!-- Food Category (Add your food shots here) -->
+            <div class="gallery-item food">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.14 PM (1).jpeg"
+                    alt="Momo">
+            </div>
+            <div class="gallery-item food">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.17 PM.jpeg"
+                    alt="Kulhad Momo">
+            </div>
+            <div class="gallery-item food">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.14 PM.jpeg"
+                    alt="Shezwan Momo">
+            </div>
+            <div class="gallery-item food">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.13 PM (2).jpeg"
+                    alt="Kulhad Maggi">
+            </div>
+            <div class="gallery-item food">
+                <img src="c:\Users\LOQ\OneDrive\Desktop\Photografer's cafe\WhatsApp Image 2026-07-14 at 7.36.15 PM (2).jpeg"
+                    alt="Club Sandwich">
+            </div>
+
+
+
+            <!-- REPEAT THIS DIV for all 40 images, just change the src and the category class -->
+
+        </div>
+    </section>
+
+    <footer>
+        <p>Pukhurpar, Mariani, Jorhat, Assam</p>
+        <p>Call: +91 7002682065 | @photographerscafe.in</p>
+    </footer>
+
+    <a href="tel:+917002682065" class="whatsapp-btn"><i class="fas fa-phone"></i> Call to Order</a>
+
+    <script>
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
